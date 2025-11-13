@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class Expense {
     private String date;
-    private Integer amount;
+    private Double amount;
     private String category;
     private String description;
 
     public Expense() {
     }
 
-    public Expense(String date, Integer amount, String category, String description) {
+    public Expense(String date, Double amount, String category, String description) {
         this.date = date;
         this.amount = amount;
         this.category = category;
@@ -26,11 +26,11 @@ public class Expense {
         this.date = date;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

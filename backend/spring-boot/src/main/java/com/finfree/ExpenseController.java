@@ -14,18 +14,29 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
 
+    @PostMapping
+    public void addNewExpense(Expense expense) {
+        expenseService.insertExpense(expense);
+    }
+
     @GetMapping
     public List<Expense> getExpenses() {
         return expenseService.getAllExpenses();
     }
 
-    @PostMapping
-    public Expense addExpense(
-            @RequestParam Integer id,
-            @RequestParam String date,
-            @RequestParam Double amount,
-            @RequestParam String category,
-            @RequestParam String description) {
-        return new Expense(id, date, amount, category, description);
+    @GetMapping("{id}")
+    public Expense getExpenseById(@PathVariable Integer id) {
+        return expenseService.getExpenseById(id);
     }
+
+    @PutMapping("{id}")
+    public void updateExpenseById(@PathVariable Integer id, @RequestBody Expense expense) {
+        expenseService.updateExpenseById(id, expense);
+    }
+
+    @DeleteMapping("{id}")
+    public void removeExpenseById(@PathVariable Integer id) {
+        expenseService.removeExpenseById(id);
+    }
+
 }

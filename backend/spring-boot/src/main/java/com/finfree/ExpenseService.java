@@ -17,4 +17,24 @@ public class ExpenseService {
         return expenseRepository.findAll();
     }
 
+    public void insertExpense(Expense expense) {
+        expenseRepository.save(expense);
+    }
+
+    public Expense getExpenseById(Integer id) {
+        return expenseRepository.findById(id).orElseThrow(() -> new IllegalStateException(id + " not found"));
+    }
+
+    public void removeExpenseById(Integer id) {
+        expenseRepository.deleteById(id);
+    }
+
+    public void updateExpenseById(Integer id, Expense update) {
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new IllegalStateException(id + " not found"));
+        expense.setDate(update.getDate());
+        expense.setAmount(update.getAmount());
+        expense.setCategory(update.getCategory());
+        expense.setDescription(update.getDescription());
+        expenseRepository.save(expense);
+    }
 }

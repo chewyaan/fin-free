@@ -11,7 +11,8 @@ const date = {
 // GET
 export const getAllExpenses = () =>
   api.get("/expenses").then((response) => {
-    console.log(response.data);
+    // Placeholder
+    alert(JSON.stringify(response.data));
   });
 
 // POST

@@ -3,8 +3,8 @@ import { getAllExpenses, insertExpense } from "../src/services/api";
 
 function App() {
   const [amount, setAmount] = useState<string>("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   return (
     <>
@@ -37,8 +37,8 @@ function App() {
               />
             </div>
             <button
-              className="flex cursor-pointer rounded-md p-2 text-white bg-emerald-300"
-              onClick={() => insertExpense(amount, category, description)}
+              className="flex cursor-pointer rounded-md p-2 text-white bg-emerald-300 hover:bg-emerald-400"
+              onClick={() => insertExpense(parseFloat(amount), category, description)}
             >
               Add Expense
             </button>

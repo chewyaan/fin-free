@@ -1,32 +1,26 @@
 import { useState } from "react";
-import viteLogo from "/vite.svg";
 import { getAllExpenses, insertExpense } from "../src/services/api";
 
 function App() {
-  const [amount, setAmount] = useState(0.0);
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   return (
     <>
-      <div className="flex justify-content gap-[2rem]">
-        <div>
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-        </div>
+      <div className="flex flex-col items-center gap-4 mx-auto w-1/4 shadow-md rounded-md">
         <h1>FinFree: Smart Budget Tracking</h1>
-        <div className="">
+        <div className="flex p-4">
           <div>
-            <div>
+            <div className="border-1 border-gray-200 rounded-md">
               <input
                 type="number"
                 placeholder="Amount ($)"
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
+                onChange={(e) => setAmount(e.target.value)}
               />
             </div>
-            <div>
+            <div className="border-1 border-gray-200 rounded-md">
               <input
                 type="text"
                 placeholder="Category"
@@ -34,7 +28,7 @@ function App() {
                 onChange={(e) => setCategory(e.target.value)}
               />
             </div>
-            <div>
+            <div className="border-1 border-gray-200 rounded-md">
               <input
                 type="text"
                 placeholder="Description"
@@ -42,14 +36,20 @@ function App() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <button className="cursor-pointer rounded-md border-1 p-2"
-              onClick={() => insertExpense(amount, category, description)}
+            <button
+              className="flex cursor-pointer rounded-md p-2 text-white bg-emerald-300 hover:bg-emerald-400"
+              onClick={() => insertExpense(parseFloat(amount), category, description)}
             >
               Add Expense
             </button>
           </div>
         </div>
-        <button className="cursor-pointer rounded-md border-1 p-2" onClick={() => getAllExpenses()}>Get Expense List</button>
+        <button
+          className="w-50 cursor-pointer rounded-md border-1 p-2"
+          onClick={() => getAllExpenses()}
+        >
+          Get Expense List
+        </button>
       </div>
     </>
   );

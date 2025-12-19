@@ -26,6 +26,10 @@ public class ExpenseService {
         return expenseRepository.findById(id).orElseThrow(() -> new IllegalStateException(id + " not found"));
     }
 
+    public void removeAllExpenses() {
+        expenseRepository.deleteAll();
+    }
+
     public void removeExpenseById(Integer id) {
         expenseRepository.deleteById(id);
     }

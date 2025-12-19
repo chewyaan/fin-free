@@ -29,7 +29,14 @@ export const insertExpense = (
       description: description,
     })
     .then((response) => {
-      const myArray = JSON.parse(response.data);
+      // **Is response.data a JSON object? or string?**
+      // const myArray = JSON.parse(response.data);
     });
+};
 
+// DELETE
+export const deleteAllExpenses = () => {
+  api.delete("/expenses").then((response) => {
+    console.log(`Expense list cleared successfully: ${response.data}`);
+  });
 };

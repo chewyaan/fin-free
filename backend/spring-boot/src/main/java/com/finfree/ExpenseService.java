@@ -27,7 +27,7 @@ public class ExpenseService {
     }
 
     public void removeAllExpenses() {
-        expenseRepository.deleteAll();
+        expenseRepository.deleteAllInBatch();
     }
 
     public void removeExpenseById(Integer id) {

@@ -1,26 +1,33 @@
 import { useState } from "react";
-import { getAllExpenses, insertExpense } from "../services/api.ts";
+import {
+  getAllExpenses,
+  insertExpense,
+  deleteAllExpenses,
+} from "../services/api.ts";
+import { MdClear } from "react-icons/md";
+import type { Expense } from "../types/index.ts";
 
-// interface Expense {
-//   date: string;
-//   amount: string;
-//   category: string;
-//   description: string;
-// }
-
-export const ExpenseForm = () => {
+export const ExpenseForm = ({addExpense}: {addExpense:Expense}) => {
   const [amount, setAmount] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const expense: Expense = {
+      amount: parseFloat(amount),
+      category: category,
+      description: description,
+    };
+
     insertExpense(parseFloat(amount), category, description);
+    addExpense(expense);
+    
   };
 
   return (
     <form
-      id="expense-form"
       className="flex flex-col items-center p-4 gap-2 w-1/4 shadow-sm rounded-2xl"
       onSubmit={handleSubmit}
     >
@@ -53,17 +60,26 @@ export const ExpenseForm = () => {
       </div>
       <button
         type="submit"
-        form="expense-form"
         className="flex cursor-pointer rounded-lg p-2 text-white bg-emerald-300 hover:bg-emerald-400"
       >
         Add Expense
       </button>
-      <button
-        className="w-50 cursor-pointer rounded-lg p-2 bg-teal-800 hover:bg-teal-900 text-white"
-        onClick={() => getAllExpenses()}
-      >
-        Get Expense List
-      </button>
+      <div className="flex gap-2">
+        <button
+          type="button"
+          className="w-50 cursor-pointer rounded-lg p-2 bg-teal-800 hover:bg-teal-900 text-white"
+          onClick={() => getAllExpenses()}
+        >
+          Get Expense List
+        </button>
+        <button
+          type="button"
+          className="cursor-pointer rounded-lg bg-gray-100 hover:bg-gray-200 p-2"
+          onClick={() => deleteAllExpenses()}
+        >
+          <MdClear />
+        </button>
+      </div>
     </form>
   );
 };

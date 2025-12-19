@@ -29,7 +29,7 @@ export const insertExpense = (
       description: description,
     })
     .then((response) => {
-      console.log(response.data);
+      const myArray = JSON.parse(response.data);
     });
 
 };

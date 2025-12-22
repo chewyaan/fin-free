@@ -36,7 +36,7 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
 
   return (
     <form
-      className="flex flex-col items-center p-4 gap-2 w-80 shadow-sm rounded-2xl"
+      className="flex flex-col items-center p-4 gap-2 w-120 shadow-sm rounded-2xl"
       onSubmit={handleSubmit}
     >
       <h1 className="font-black text-teal-900">

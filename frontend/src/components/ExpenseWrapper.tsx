@@ -9,16 +9,19 @@ export const ExpenseWrapper = () => {
 
   const addExpense = (expense: Expense) => {
     setExpenses([...expenses, expense]);
-    console.log(expense);
   };
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col items-center gap-4">
         <ExpenseForm addExpense={addExpense} />
-        {expenses.map((expense, index) => (
-          <ExpenseItem item={expense} key={index} />
-        ))}
+        <table className="w-160 h-80 shadow-sm rounded-2xl">
+          <tbody className="flex flex-col p-4 gap-3">
+            {expenses.map((expense, index) => (
+              <ExpenseItem item={expense} key={index} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

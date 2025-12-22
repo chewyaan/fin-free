@@ -84,7 +84,7 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173` (or your configured port)
+The frontend will be available at `http://localhost:5173`
 
 ## Project Structure
 

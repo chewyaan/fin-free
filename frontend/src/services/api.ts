@@ -1,12 +1,7 @@
 import axios from "axios";
+import type { Expense } from "../types";
 
 const api = axios.create({ baseURL: "http://localhost:8080/api/v1" });
-const currentDate = new Date();
-const date = {
-  month: currentDate.getMonth() + 1,
-  day: currentDate.getDate(),
-  year: currentDate.getFullYear(),
-};
 
 // GET
 export const getAllExpenses = () =>
@@ -16,20 +11,23 @@ export const getAllExpenses = () =>
   });
 
 // POST
-export const insertExpense = (
-  amount: number,
-  category: string,
-  description: string
-) => {
+export const insertExpense = (expense: Expense) => {
   api
     .post("/expenses", {
-      date: `${date.month}-${date.day}-${date.year}`,
-      amount: amount,
-      category: category,
-      description: description,
+      date: expense.date,
+      amount: expense.amount,
+      category: expense.category,
+      description: expense.description,
     })
     .then((response) => {
-      console.log(response.data);
+      // **Is response.data a JSON object? or string?**
+      // const myArray = JSON.parse(response.data);
     });
+};
 
+// DELETE
+export const deleteAllExpenses = () => {
+  api.delete("/expenses").then((response) => {
+    console.log(`Expense list cleared successfully: ${response.data}`);
+  });
 };

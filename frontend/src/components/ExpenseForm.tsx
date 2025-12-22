@@ -7,7 +7,7 @@ import {
 import { MdClear } from "react-icons/md";
 import type { Expense } from "../types/index.ts";
 
-export const ExpenseForm = ({addExpense}: {addExpense:Expense}) => {
+export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => void}) => {
   const [amount, setAmount] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -15,20 +15,28 @@ export const ExpenseForm = ({addExpense}: {addExpense:Expense}) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const currentDate = new Date();
+
     const expense: Expense = {
+      date: `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`,
       amount: parseFloat(amount),
       category: category,
       description: description,
     };
 
-    insertExpense(parseFloat(amount), category, description);
+    insertExpense(expense);
     addExpense(expense);
+
+    // Reset Values
+    setAmount("");
+    setCategory("");
+    setDescription("");
     
   };
 
   return (
     <form
-      className="flex flex-col items-center p-4 gap-2 w-1/4 shadow-sm rounded-2xl"
+      className="flex flex-col items-center p-4 gap-2 w-80 shadow-sm rounded-2xl"
       onSubmit={handleSubmit}
     >
       <h1 className="font-black text-teal-900">

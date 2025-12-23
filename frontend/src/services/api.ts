@@ -6,8 +6,11 @@ const api = axios.create({ baseURL: "http://localhost:8080/api/v1" });
 // GET
 export const getAllExpenses = () =>
   api.get("/expenses").then((response) => {
-    // Placeholder
-    alert(JSON.stringify(response.data));
+    const array: object[] = response.data;
+    array.map((item) => {
+      const expense = item as Expense;
+      
+    });
   });
 
 // POST

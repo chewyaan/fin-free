@@ -17,14 +17,24 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
 
     const currentDate = new Date();
 
-    const expense: Expense = {
+    let expense: Expense = {
+      id: 0,
       date: `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`,
       amount: parseFloat(amount),
       category: category,
       description: description,
     };
 
-    insertExpense(expense);
+    // API Call
+    const expenseFromDb = insertExpense(expense);
+    expense = {
+      id: expenseFromDb.id,
+      date: expenseFromDb.date,
+      amount: expenseFromDb.amount,
+      category: expenseFromDb.category,
+      description: expenseFromDb.description,
+    }
+
     addExpense(expense);
 
     // Reset Values
@@ -73,13 +83,13 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
         Add Expense
       </button>
       <div className="flex gap-2">
-        <button
+        {/* <button
           type="button"
           className="w-50 cursor-pointer rounded-lg p-2 bg-teal-800 hover:bg-teal-900 text-white"
           onClick={() => getAllExpenses()}
         >
           Get Expense List
-        </button>
+        </button> */}
         <button
           type="button"
           className="cursor-pointer rounded-lg bg-gray-100 hover:bg-gray-200 p-2"

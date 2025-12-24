@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ExpenseForm } from "./ExpenseForm";
 import type { Expense } from "../types";
-import { v4 as uuidv4 } from "uuid";
-import { ExpenseItem } from "./ExpenseItem";
+// import { v4 as uuidv4 } from "uuid";
+import { getAllExpenses } from "../services/api";
+import { ExpenseTable } from "./ExpenseTable";
 
 export const ExpenseWrapper = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const data = await getAllExpenses();
+        setExpenses(data);
+      } catch (error) {
+        console.error("Failed to fetch expenses:", error);
+      }
+    };
+
+    fetchExpenses();
+  }, []);
 
   const addExpense = (expense: Expense) => {
     setExpenses([...expenses, expense]);
@@ -15,13 +29,7 @@ export const ExpenseWrapper = () => {
     <>
       <div className="flex flex-col items-center gap-4">
         <ExpenseForm addExpense={addExpense} />
-        <table className="w-160 h-80 shadow-sm rounded-2xl">
-          <tbody className="flex flex-col p-4 gap-3">
-            {expenses.map((expense, index) => (
-              <ExpenseItem item={expense} key={index} />
-            ))}
-          </tbody>
-        </table>
+        <ExpenseTable expenses={expenses}/>
       </div>
     </>
   );

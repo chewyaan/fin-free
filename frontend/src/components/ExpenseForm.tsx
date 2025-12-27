@@ -1,13 +1,13 @@
 import { useState } from "react";
-import {
-  getAllExpenses,
-  insertExpense,
-  deleteAllExpenses,
-} from "../services/api.ts";
+import { insertExpense, deleteAllExpenses } from "../services/api.ts";
 import { MdClear } from "react-icons/md";
 import type { Expense } from "../types/index.ts";
 
-export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => void}) => {
+export const ExpenseForm = ({
+  addExpense,
+}: {
+  addExpense: (expense: Expense) => void;
+}) => {
   const [amount, setAmount] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -19,7 +19,9 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
 
     let expense: Expense = {
       id: 0,
-      date: `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`,
+      date: `${
+        currentDate.getMonth() + 1
+      }/${currentDate.getDate()}/${currentDate.getFullYear()}`,
       amount: parseFloat(amount),
       category: category,
       description: description,
@@ -33,7 +35,7 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
       amount: expenseFromDb.amount,
       category: expenseFromDb.category,
       description: expenseFromDb.description,
-    }
+    };
 
     addExpense(expense);
 
@@ -41,7 +43,6 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
     setAmount("");
     setCategory("");
     setDescription("");
-    
   };
 
   return (
@@ -82,22 +83,13 @@ export const ExpenseForm = ({addExpense}: {addExpense: (expense: Expense) => voi
       >
         Add Expense
       </button>
-      <div className="flex gap-2">
-        {/* <button
-          type="button"
-          className="w-50 cursor-pointer rounded-lg p-2 bg-teal-800 hover:bg-teal-900 text-white"
-          onClick={() => getAllExpenses()}
-        >
-          Get Expense List
-        </button> */}
-        <button
-          type="button"
-          className="cursor-pointer rounded-lg bg-gray-100 hover:bg-gray-200 p-2"
-          onClick={() => deleteAllExpenses()}
-        >
-          <MdClear />
-        </button>
-      </div>
+      <button
+        type="button"
+        className="cursor-pointer rounded-lg bg-gray-100 hover:bg-red-400 hover:text-white p-2"
+        onClick={() => deleteAllExpenses()}
+      >
+        <MdClear />
+      </button>
     </form>
   );
 };

@@ -6,6 +6,7 @@ import { cadFormatter } from "../services/currencyFormatter";
 
 export const ExpenseItem = ({ item }: { item: Expense }) => {
   const [date, setDate] = useState<string>(item.date);
+  // * NEED TO UPDATE *
   const [amount, setAmount] = useState<string>(item.amount.toString());
   const [category, setCategory] = useState<string>(item.category);
   const [description, setDescription] = useState<string>(item.description);

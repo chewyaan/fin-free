@@ -13,6 +13,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/* Removes ring when input field is in focus */
+input:focus {
+  outline: none;
+}
+
 @theme {
   --inset-shadow-sm: inset 0 0 3px rgba(0, 0, 0, 0.25);
   --shadow-sm: 0 0 2px rgba(0, 0, 0, 0.25);

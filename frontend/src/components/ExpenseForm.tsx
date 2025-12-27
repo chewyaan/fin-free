@@ -85,10 +85,10 @@ export const ExpenseForm = ({
       </button>
       <button
         type="button"
-        className="cursor-pointer rounded-lg bg-gray-100 hover:bg-red-400 hover:text-white p-2"
+        className=" flex items-center gap-1 cursor-pointer rounded-lg bg-gray-100 hover:bg-red-400 hover:text-white p-2"
         onClick={() => deleteAllExpenses()}
       >
-        <MdClear />
+        CLEAR<MdClear />
       </button>
     </form>
   );

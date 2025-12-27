@@ -40,3 +40,14 @@ export const deleteAllExpenses = () => {
     console.log(`Expense list cleared successfully: ${response.data}`);
   });
 };
+
+// DELETE
+export const deleteExpense = async (id: number): Promise<void> => {
+  try {
+    await api.delete(`/expenses/${id}`);
+    console.log(`Expense: id=${id} successfully removed!`); 
+  } catch (error) {
+    console.error(`Error deleting expense with id=${id}: `, error);
+    throw(error);
+  }
+}

@@ -39,7 +39,7 @@ export const ExpenseItem = ({ item }: { item: Expense }) => {
       </td>
       <td className="p-2">
         <input
-          className="p-1 w-50 hover:bg-gray-100 focus:bg-white focus:ring-3 focus:ring-teal-900 rounded-md"
+          className="p-1 w-25 hover:bg-gray-100 focus:bg-white focus:ring-3 focus:ring-teal-900 rounded-md"
           type="number"
           placeholder={cadFormatter.format(item.amount)}
           // * NEED TO IMPLEMENT *

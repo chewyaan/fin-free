@@ -49,11 +49,12 @@ export const ExpenseForm = ({
       className="flex flex-col items-center p-4 gap-2 w-120 shadow-sm rounded-2xl"
       onSubmit={handleSubmit}
     >
-      <h1 className="font-black text-teal-900">
+      <h1 className="font-black text-xl text-teal-900">
         FinFree <span className="font-normal">Smart Budget Tracking</span>
       </h1>
       <div className="inset-shadow-sm rounded-lg">
         <input
+          className="p-1"
           type="number"
           placeholder="Amount ($)"
           value={amount}
@@ -62,6 +63,7 @@ export const ExpenseForm = ({
       </div>
       <div className="inset-shadow-sm rounded-lg">
         <input
+          className="p-1"
           type="text"
           placeholder="Category"
           value={category}
@@ -70,6 +72,7 @@ export const ExpenseForm = ({
       </div>
       <div className="inset-shadow-sm rounded-lg">
         <input
+          className="p-1"
           type="text"
           placeholder="Description"
           value={description}

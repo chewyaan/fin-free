@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { insertExpense, deleteAllExpenses } from "../services/api.ts";
-import { MdClear } from "react-icons/md";
 import type { Expense } from "../types/index.ts";
 
 export const ExpenseForm = ({
@@ -88,7 +87,7 @@ export const ExpenseForm = ({
         className=" flex items-center gap-1 cursor-pointer rounded-lg bg-gray-100 hover:bg-red-400 hover:text-white p-2"
         onClick={() => deleteAllExpenses()}
       >
-        CLEAR<MdClear />
+        Clear All
       </button>
     </form>
   );

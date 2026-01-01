@@ -1,5 +1,7 @@
-package com.finfree;
+package com.finfree.controller;
 
+import com.finfree.service.ExpenseService;
+import com.finfree.model.Expense;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

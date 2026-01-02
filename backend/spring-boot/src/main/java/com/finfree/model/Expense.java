@@ -1,11 +1,10 @@
-package com.finfree;
+package com.finfree.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 @Entity

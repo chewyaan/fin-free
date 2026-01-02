@@ -1,7 +1,8 @@
-package com.finfree;
+package com.finfree.service;
 
+import com.finfree.model.Expense;
+import com.finfree.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -42,4 +43,9 @@ public class ExpenseService {
         expense.setDescription(update.getDescription());
         expenseRepository.save(expense);
     }
+
+    public Double calculateTotal() {
+        return expenseRepository.calculateTotal();
+    }
+
 }

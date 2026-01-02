@@ -45,9 +45,19 @@ export const deleteAllExpenses = () => {
 export const deleteExpense = async (id: number): Promise<void> => {
   try {
     await api.delete(`/expenses/${id}`);
-    console.log(`Expense: id=${id} successfully removed!`); 
+    console.log(`Expense: id=${id} successfully removed!`);
   } catch (error) {
     console.error(`Error deleting expense with id=${id}: `, error);
-    throw(error);
+    throw error;
   }
-}
+};
+
+export const fetchExpenseTotal = async (): Promise<number> => {
+  try {
+    const response = await api.get(`/expenses/fetchTotal`);
+    return response.data as number;
+  } catch (error) {
+    console.error("Error fetching the expense total: ", error);
+    throw error;
+  }
+};

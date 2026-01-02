@@ -1,5 +1,7 @@
-package com.finfree;
+package com.finfree.controller;
 
+import com.finfree.service.ExpenseService;
+import com.finfree.model.Expense;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,11 @@ public class ExpenseController {
     @GetMapping("{id}")
     public Expense getExpenseById(@PathVariable Integer id) {
         return expenseService.getExpenseById(id);
+    }
+
+    @GetMapping("/fetchTotal")
+    public Double fetchTotal() {
+        return expenseService.calculateTotal();
     }
 
     @PutMapping("{id}")

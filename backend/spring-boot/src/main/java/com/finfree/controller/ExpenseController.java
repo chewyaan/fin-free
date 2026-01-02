@@ -32,6 +32,11 @@ public class ExpenseController {
         return expenseService.getExpenseById(id);
     }
 
+    @GetMapping("/fetchTotal")
+    public Double fetchTotal() {
+        return expenseService.calculateTotal();
+    }
+
     @PutMapping("{id}")
     public void updateExpenseById(@PathVariable Integer id, @RequestBody Expense expense) {
         expenseService.updateExpenseById(id, expense);

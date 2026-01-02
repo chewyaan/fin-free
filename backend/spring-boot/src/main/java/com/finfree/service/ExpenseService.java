@@ -43,4 +43,9 @@ public class ExpenseService {
         expense.setDescription(update.getDescription());
         expenseRepository.save(expense);
     }
+
+    public Double calculateTotal() {
+        return expenseRepository.calculateTotal();
+    }
+
 }
